@@ -1,0 +1,51 @@
+{
+  "name": "microsservico-pedidos",
+  "version": "0.0.1",
+  "description": "Estudo de mensageria com RabbitMQ, NestJS e microsservicos",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "lint": "eslint \"{apps,libs}/**/*.ts\" --fix",
+    "start:gateway": "nest start api-gateway --watch",
+    "start:orders": "nest start orders --watch",
+    "start:inventory": "nest start inventory --watch",
+    "start:payments": "nest start payments --watch",
+    "start:notifications": "nest start notifications --watch",
+    "start:all": "concurrently -n gateway,orders,inventory,payments,notifications -c cyan,green,yellow,magenta,blue \"npm:start:gateway\" \"npm:start:orders\" \"npm:start:inventory\" \"npm:start:payments\" \"npm:start:notifications\"",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down",
+    "infra:reset": "docker compose down -v"
+  },
+  "dependencies": {
+    "@golevelup/nestjs-rabbitmq": "^5.7.0",
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "^4.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/schedule": "^6.0.0",
+    "@nestjs/typeorm": "^11.0.0",
+    "amqp-connection-manager": "^4.1.14",
+    "amqplib": "^0.10.4",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.0",
+    "@nestjs/schematics": "^11.0.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.0",
+    "concurrently": "^9.1.0",
+    "prettier": "^3.4.2",
+    "source-map-support": "^0.5.21",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.3"
+  }
+}
